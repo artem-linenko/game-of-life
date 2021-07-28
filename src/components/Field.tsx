@@ -1,30 +1,15 @@
-import { useEffect, useState } from 'react';
-
-import { calculateNextTickFieldData, FieldData, initialFieldData } from '../utils';
+import { useFieldDataGeneration } from '../hooks';
 import Cell from './Cell';
 
 export default function Field() {
-  const [tick, setTick] = useState(0);
-  const [fieldData, setFieldData] = useState<FieldData>(initialFieldData());
-
-  useEffect(() => {
-    if (tick === 0) {
-      return;
-    }
-
-    setFieldData(calculateNextTickFieldData(fieldData));
-  }, [tick, fieldData]);
-
-  // setTimeout(() => {
-  //   setTick((t) => t + 1);
-  // }, 1000);
+  const { fieldData } = useFieldDataGeneration();
 
   return (
     <div className="field">
-      {fieldData?.map((row) => (
-        <div className="field-row">
-          {row.map((cell) => (
-            <Cell alive={Boolean(cell)} />
+      {fieldData?.map((row, rowIndex) => (
+        <div className="field-row" key={rowIndex}>
+          {row.map((cell, colIndex) => (
+            <Cell key={colIndex} alive={Boolean(cell)} />
           ))}
         </div>
       ))}
