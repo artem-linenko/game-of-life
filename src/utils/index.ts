@@ -1,10 +1,11 @@
 import { compact, times } from 'lodash';
 
-const CELLS_IN_ROW = 50;
-const CELLS_IN_COLUMN = 50;
-export type FieldData = number[][];
+import { FieldData } from '../types';
 
-const getAliveNeighboursCount = (
+const ROWS_NUM = 50;
+const COLUMNS_NUM = 50;
+
+export const getAliveNeighboursCount = (
   rowIndex: number,
   colIndex: number,
   field: FieldData
@@ -38,8 +39,9 @@ const getAliveNeighboursCount = (
 };
 
 // 1 is for alive, 0 is for dead
-const isRandomlyAlive = () => Math.round(Math.random());
-const isAlive = (
+export const isRandomlyAlive = (): number => Math.round(Math.random());
+
+export const isAlive = (
   rowIndex: number,
   colIndex: number,
   field: FieldData
@@ -63,8 +65,10 @@ const isAlive = (
   return true;
 };
 
-export const initialFieldData = (): FieldData =>
-  times(CELLS_IN_COLUMN, () => times(CELLS_IN_ROW, isRandomlyAlive));
+export const initialFieldData = (
+  rowsNum = ROWS_NUM,
+  columnsNum = COLUMNS_NUM
+): FieldData => times(columnsNum, () => times(rowsNum, isRandomlyAlive));
 
 export const calculateNextTickFieldData = (field: FieldData): FieldData =>
   field.map((row, rowIndex) =>
