@@ -16,24 +16,26 @@ export const useFieldDataGeneration = ({
   const [finished, setFinished] = useState<boolean>();
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log("setting timeout");
-      setTick((t) => t + 1);
-    }, 400);
-    console.log({ tick });
+    if (!finished) {
+      setTimeout(() => {
+        setTick((t) => t + 1);
+      }, 400);
+    }
 
     if (tick === 0) {
+      // initial field data is already set
       return;
     }
+
     const fieldData = fieldDataRef.current;
     const newFieldData = calculateNextTickFieldData(fieldData);
 
-    if (isEqual(fieldData, newFieldData)) {
+    if (tick % 5 === 0 && isEqual(fieldData, newFieldData)) {
       setFinished(true);
     } else {
       fieldDataRef.current = newFieldData;
     }
-  }, [tick]);
+  }, [tick, finished]);
 
   useEffect(() => {
     if (finished) {
