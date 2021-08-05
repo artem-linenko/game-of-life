@@ -2,7 +2,7 @@ import {
     calculateNextTickFieldData, getAliveNeighboursCount, initialFieldData, isAlive, isRandomlyAlive
 } from './';
 
-describe("utils", () => {
+describe("testing utils", () => {
   test("checks `isRandomlyAlive` util", () => {
     expect(isRandomlyAlive()).toBeLessThan(2);
     expect(isRandomlyAlive()).toBeLessThan(2);
@@ -97,6 +97,39 @@ describe("utils", () => {
     expect(nextTickFieldData2).toEqual([
       [0, 1, 0],
       [0, 1, 0],
+      [0, 0, 0],
+    ]);
+
+    const nextTickFieldData3 = calculateNextTickFieldData([
+      [0, 1, 1],
+      [0, 0, 1],
+      [0, 0, 0],
+    ]);
+    expect(nextTickFieldData3).toEqual([
+      [0, 1, 1],
+      [0, 1, 1],
+      [0, 0, 0],
+    ]);
+
+    const nextTickFieldData4 = calculateNextTickFieldData([
+      [0, 1, 1],
+      [0, 1, 1],
+      [0, 0, 0],
+    ]);
+    expect(nextTickFieldData4).toEqual([
+      [0, 1, 1],
+      [0, 1, 1],
+      [0, 0, 0],
+    ]);
+
+    const nextTickFieldData5 = calculateNextTickFieldData([
+      [0, 1, 0],
+      [0, 1, 0],
+      [0, 1, 0],
+    ]);
+    expect(nextTickFieldData5).toEqual([
+      [0, 0, 0],
+      [1, 1, 1],
       [0, 0, 0],
     ]);
   });

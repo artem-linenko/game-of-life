@@ -1,8 +1,14 @@
-import { useFieldDataGeneration } from '../hooks';
-import Cell from './Cell';
+import { useFieldDataGeneration } from '../../hooks';
+import { Cell } from '../Cell';
 
-export default function Field() {
-  const { fieldData } = useFieldDataGeneration();
+export default function Field({
+  rowsNum,
+  columnsNum,
+}: {
+  rowsNum?: number;
+  columnsNum?: number;
+}) {
+  const { fieldData } = useFieldDataGeneration({ rowsNum, columnsNum });
 
   return (
     <div className="field" data-testid="field">
