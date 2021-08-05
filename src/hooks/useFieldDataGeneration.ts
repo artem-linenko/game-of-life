@@ -17,10 +17,8 @@ export const useFieldDataGeneration = ({
 
   useEffect(() => {
     setTimeout(() => {
-      console.log("setting timeout");
       setTick((t) => t + 1);
     }, 400);
-    console.log({ tick });
 
     if (tick === 0) {
       return;
