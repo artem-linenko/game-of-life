@@ -1,12 +1,9 @@
 import { act } from 'react-dom/test-utils';
 
-import { render, screen, wait, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { calculateNextTickFieldData } from '../../utils';
 import Field from './Field';
-
-const sleep = (t: number) =>
-  new Promise<void>((resolve) => setTimeout(resolve, t));
 
 describe("testing Field component", () => {
   test("checks 'field' className on root element", () => {
