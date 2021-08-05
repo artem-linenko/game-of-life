@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { FieldData } from '../types';
 import { calculateNextTickFieldData, initialFieldData } from '../utils';
