@@ -1,14 +1,27 @@
 import { isEqual } from 'lodash';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { calculateNextTickFieldData, FieldData, initialFieldData } from '../utils';
+import { FieldData } from '../types';
+import { calculateNextTickFieldData, initialFieldData } from '../utils';
 
-export const useFieldDataGeneration = () => {
-  const fieldDataRef = useRef<FieldData>(initialFieldData());
+export const useFieldDataGeneration = ({
+  rowsNum,
+  columnsNum,
+}: {
+  rowsNum?: number;
+  columnsNum?: number;
+}) => {
+  const fieldDataRef = useRef<FieldData>(initialFieldData(rowsNum, columnsNum));
   const [tick, setTick] = useState(0);
   const [finished, setFinished] = useState<boolean>();
 
   useEffect(() => {
+    setTimeout(() => {
+      console.log("setting timeout");
+      setTick((t) => t + 1);
+    }, 400);
+    console.log({ tick });
+
     if (tick === 0) {
       return;
     }
@@ -22,18 +35,11 @@ export const useFieldDataGeneration = () => {
     }
   }, [tick]);
 
-  const tickInterval = useMemo(() => {
-    return setInterval(() => {
-      setTick((t) => t + 1);
-    }, 400);
-  }, []);
-
   useEffect(() => {
     if (finished) {
-      clearTimeout(tickInterval);
-      alert("The End!");
+      window.alert("The game is over ;)");
     }
-  }, [finished, tickInterval]);
+  }, [finished]);
 
   return {
     fieldData: fieldDataRef.current,

@@ -1,10 +1,10 @@
 import './App.css';
 
-import Field from './components/Field';
+import { Field } from './components/Field';
 
 export default function App() {
   return (
-    <div className="app-root">
+    <div className="app-root" data-testid="app-root">
       <Field />
     </div>
   );
