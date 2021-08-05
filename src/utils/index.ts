@@ -35,6 +35,7 @@ export const getAliveNeighboursCount = (
   ];
 
   // compact will clear both nulls an 0 (dead cells)
+  // this can be avoided by only storing alive cells in the array but preserved for the sake of readability
   return compact(neighbours).length;
 };
 

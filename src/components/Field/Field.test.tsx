@@ -42,7 +42,7 @@ describe("testing Field component", () => {
     expect(initialFieldData[0].length).toBe(3);
 
     act(() => {
-      jest.advanceTimersByTime(10000);
+      jest.advanceTimersByTime(500);
     });
 
     const fieldData1 = getFieldDataFromDom(fieldElement);
